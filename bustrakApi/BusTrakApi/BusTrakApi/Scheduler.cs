@@ -12,16 +12,17 @@ namespace BusTrakApi
         public Schedules()
         {
             schedules = new List<Schedule>();
-            var scheduleList = File.ReadAllLines(@"C:\mtrx\repo\github\GitHub\0328b\bustrak\bustrakUtils\bustrak_scheduler_generator\schedules.txt");
+            // var scheduleList = File.ReadAllLines(@"C:\mtrx\repo\github\GitHub\0328b\bustrak\bustrakUtils\bustrak_scheduler_generator\schedules.txt");
+            var scheduleList = File.ReadAllLines(@"../../../bustrakUtils/bustrak_scheduler_generator/schedules.txt");
 
             for (int ii = 0; ii < scheduleList.Length; ii++)
             {
                 var splitStr = scheduleList[ii].Split('|');
                 if (splitStr.Length == 3)
                 {
-                    var timeCounter = int.Parse(splitStr[2]);
-                    var time = TimeSpan.FromMinutes(timeCounter);
-                    schedules.Add(new Schedule(int.Parse(splitStr[0]), int.Parse(splitStr[1]), timeCounter, time));
+                    var timeInMinutes = int.Parse(splitStr[2]);
+                    var time = TimeSpan.FromMinutes(timeInMinutes);
+                    schedules.Add(new Schedule(int.Parse(splitStr[0]), int.Parse(splitStr[1]), timeInMinutes, time));
                 }
             }
         }
@@ -32,17 +33,14 @@ namespace BusTrakApi
     {
         public int BusStopId { get; set; }
         public int RouteId { get; set; }
-
-        // TimeCounter is a value that stores time in 15-minute increments
-        // Example: 0:00, 0:15, 0:30, 0:45, 1:00, 1:15 are stored as 0, 1, 2, 3, 4, 5
-        public int TimeCounter { get; set; }
+        public int TimeInMinutes { get; set; }
         public TimeSpan ArrivalTime { get; set; }
 
-        public Schedule(int busStopId, int routeId, int timeCounter, TimeSpan arrivalTime)
+        public Schedule(int busStopId, int routeId, int timeInMinutes, TimeSpan arrivalTime)
         {
             BusStopId = busStopId;
             RouteId = routeId;
-            TimeCounter = timeCounter;
+            TimeInMinutes = timeInMinutes;
             ArrivalTime = arrivalTime;
         }
     }
