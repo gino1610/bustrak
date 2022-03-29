@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
         // console.log('response 2');
         // console.log(response);
       });
-    }, 5*1000);
+    }, 60*1000);
   }
 
   public OnButtonClick() {
