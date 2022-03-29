@@ -9,15 +9,17 @@ import { ScheduleService } from './schedule.service';
 export class AppComponent implements OnInit {
   title = 'bustrak';
   currentTime = new Date();
-  arrivalTimings = [];
+  schedulesForBuStop1:any;
+  schedulesForBuStop2:any;
   refreshLabels = ["Stop Auto Refresh", "Refreshing", "Auto Refresh Stopped"];
   refreshLabel: string = "";
-
+  refreshCounter = 0;
   timer1Id: any;
   timer2Id: any;
 
+
   constructor(
-    // private scheduleService: ScheduleService    
+    private scheduleService: ScheduleService    
   ) {
   }
 
@@ -30,7 +32,26 @@ export class AppComponent implements OnInit {
 
     this.timer2Id = setInterval(() => {         
       this.refreshLabel = this.refreshLabels[1];
-    }, 60*1000);
+      this.refreshCounter = 0;
+      this.scheduleService.getSchedules(0, this.currentTime).subscribe(response => {
+        this.schedulesForBuStop1 = response;
+        this.refreshCounter++;
+        if (this.refreshCounter >= 2) {
+          this.refreshLabel = this.refreshLabels[0];
+        }
+        // console.log('response 1');
+        // console.log(response);
+      });
+      this.scheduleService.getSchedules(1, this.currentTime).subscribe(response => {
+        this.schedulesForBuStop2 = response;
+        this.refreshCounter++;
+        if (this.refreshCounter >= 2) {
+          this.refreshLabel = this.refreshLabels[0];
+        }
+        // console.log('response 2');
+        // console.log(response);
+      });
+    }, 5*1000);
   }
 
   public OnButtonClick() {

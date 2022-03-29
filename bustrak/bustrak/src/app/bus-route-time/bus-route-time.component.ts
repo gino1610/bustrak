@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ScheduleResponse } from '../models/ScheduleResponse';
 
 @Component({
   selector: 'app-bus-route-time',
@@ -6,9 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./bus-route-time.component.scss']
 })
 export class BusRouteTimeComponent implements OnInit {
-  // @Input() busStopId: number | 0;
-  // @Input() routeId: number|0;
-  // @Input() arrivalTimings: [];
+  @Input()
+  schedule: ScheduleResponse = new ScheduleResponse;
   
   constructor() { }
 

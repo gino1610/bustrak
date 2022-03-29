@@ -173,15 +173,15 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <h3>Route 1</h3>
+            <h3>Route {{schedulesForBuStop1[0].routeId + 1}}</h3>
           </div>        
         </div>
         <div class="row">
           <div class="col-6">
-              <span>In 14 minutes </span>
+              <span>In {{schedulesForBuStop1[0].timeInMinutes}} minutes </span>
           </div> 
           <div class="col-6">
-              <span>In 29 minutes </span>
+              <span>In {{schedulesForBuStop1[1].timeInMinutes}} minutes </span>
           </div>         
         </div>
       </div>
@@ -191,15 +191,15 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <h3>Route 2</h3>
+            <h3>Route {{schedulesForBuStop1[2].routeId + 1}}</h3>
           </div>        
         </div>
         <div class="row">
           <div class="col-6">
-              <span>In 14 minutes </span>
+              <span>In {{schedulesForBuStop1[2].timeInMinutes}} minutes </span>
           </div> 
           <div class="col-6">
-              <span>In 29 minutes </span>
+              <span>In {{schedulesForBuStop1[3].timeInMinutes}} minutes </span>
           </div>         
         </div>
       </div>
@@ -209,24 +209,22 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <h3>Route 3</h3>
+            <h3>Route {{schedulesForBuStop1[4].routeId + 1}}</h3>
           </div>        
         </div>
         <div class="row">
           <div class="col-6">
-              <span>In 14 minutes </span>
+              <span>In {{schedulesForBuStop1[4].timeInMinutes}} minutes </span>
           </div> 
           <div class="col-6">
-              <span>In 29 minutes </span>
+              <span>In {{schedulesForBuStop1[5].timeInMinutes}} minutes </span>
           </div>         
         </div>
       </div>
     </div>
 
     <!-- <bus-route-time
-      [busStopId]="1"
-      [routeId]="1"
-      [arrivalTimings]="'arrivalTimings'"    
+      [schedule]="'schedule[0]'"    
     ></bus-route-time> -->
   </div>
 
@@ -237,15 +235,15 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <h3>Route 1</h3>
+            <h3>Route {{schedulesForBuStop2[0].routeId + 1}}</h3>
           </div>        
         </div>
         <div class="row">
           <div class="col-6">
-              <span>In 14 minutes </span>
+              <span>In {{schedulesForBuStop2[0].timeInMinutes}} minutes </span>
           </div> 
           <div class="col-6">
-              <span>In 29 minutes </span>
+              <span>In {{schedulesForBuStop2[1].timeInMinutes}} minutes </span>
           </div>         
         </div>
       </div>
@@ -255,15 +253,15 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <h3>Route 2</h3>
+            <h3>Route {{schedulesForBuStop2[2].routeId + 1}}</h3>
           </div>        
         </div>
         <div class="row">
           <div class="col-6">
-              <span>In 14 minutes </span>
+              <span>In {{schedulesForBuStop2[2].timeInMinutes}} minutes </span>
           </div> 
           <div class="col-6">
-              <span>In 29 minutes </span>
+              <span>In {{schedulesForBuStop2[3].timeInMinutes}} minutes </span>
           </div>         
         </div>
       </div>
@@ -273,19 +271,23 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <h3>Route 3</h3>
+            <h3>Route {{schedulesForBuStop2[4].routeId + 1}}</h3>
           </div>        
         </div>
         <div class="row">
           <div class="col-6">
-              <span>In 14 minutes </span>
+              <span>In {{schedulesForBuStop2[4].timeInMinutes}} minutes </span>
           </div> 
           <div class="col-6">
-              <span>In 29 minutes </span>
+              <span>In {{schedulesForBuStop2[5].timeInMinutes}} minutes </span>
           </div>         
         </div>
       </div>
     </div>
+
+    <!-- <bus-route-time
+      [schedule]="'schedule[0]'"    
+    ></bus-route-time> -->
   </div>
 </div>
 <router-outlet></router-outlet>
