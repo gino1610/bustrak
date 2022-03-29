@@ -2,13 +2,13 @@
 
 This app is divided into 3 parts:
 * bustrakapi
-* bustrackui
+* bustrack Web/UI
 * bustrakutils
 
 ## bustrakapi
 Api info
 
-## bustrak
+## bustrak Web/UI
 An angular front end app 
 
 ## bustrackutils
