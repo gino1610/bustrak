@@ -18,12 +18,15 @@ namespace BusTrakApi.Controllers
         {
             _logger = logger;
         }
+
         [HttpGet]
         public List<ScheduleResponse> RetreiveSchedule(int busStopId, DateTime time)
         {
-
+            var timeInMinutes = TimeSpan.Parse(time.ToString("HH:mm")).TotalMinutes;
             var response = schedules.schedules
-                .Where(xx => xx.BusStopId == busStopId && xx.RouteId == 0)
+                .Where(xx => xx.BusStopId == busStopId
+                    && xx.TimeInMinutes > timeInMinutes
+                    && xx.RouteId == 0)
                 .Select(xx => new ScheduleResponse()
                 {
                     BusStopId = xx.BusStopId,
@@ -31,9 +34,10 @@ namespace BusTrakApi.Controllers
                     ArrivalTime = xx.ArrivalTime
                 }).Take(2).ToList();
 
-            response.AddRange(
-                    schedules.schedules
-                    .Where(xx => xx.BusStopId == busStopId && xx.RouteId == 1)
+            response.AddRange(schedules.schedules
+                .Where(xx => xx.BusStopId == busStopId
+                    && xx.TimeInMinutes > timeInMinutes
+                    && xx.RouteId == 1)
                 .Select(xx => new ScheduleResponse()
                 {
                     BusStopId = xx.BusStopId,
@@ -41,9 +45,10 @@ namespace BusTrakApi.Controllers
                     ArrivalTime = xx.ArrivalTime
                 }).Take(2).ToList());
 
-            response.AddRange(
-                    schedules.schedules
-                    .Where(xx => xx.BusStopId == busStopId && xx.RouteId == 2)
+            response.AddRange(schedules.schedules
+                .Where(xx => xx.BusStopId == busStopId
+                    && xx.TimeInMinutes > timeInMinutes
+                    && xx.RouteId == 2)
                 .Select(xx => new ScheduleResponse()
                 {
                     BusStopId = xx.BusStopId,
