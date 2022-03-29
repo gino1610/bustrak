@@ -22,7 +22,7 @@ namespace BusTrakApi
                 {
                     var timeInMinutes = int.Parse(splitStr[2]);
                     var time = TimeSpan.FromMinutes(timeInMinutes);
-                    schedules.Add(new Schedule(int.Parse(splitStr[0]), int.Parse(splitStr[1]), timeInMinutes, time));
+                    schedules.Add(new Schedule(int.Parse(splitStr[0]), int.Parse(splitStr[1]), timeInMinutes));
                 }
             }
         }
@@ -34,21 +34,14 @@ namespace BusTrakApi
         public int BusStopId { get; set; }
         public int RouteId { get; set; }
         public int TimeInMinutes { get; set; }
-        public TimeSpan ArrivalTime { get; set; }
 
-        public Schedule(int busStopId, int routeId, int timeInMinutes, TimeSpan arrivalTime)
+        public Schedule(int busStopId, int routeId, int timeInMinutes)
         {
             BusStopId = busStopId;
             RouteId = routeId;
             TimeInMinutes = timeInMinutes;
-            ArrivalTime = arrivalTime;
         }
-    }
 
-    public class ScheduleResponse
-    {
-        public int BusStopId { get; set; }
-        public int RouteId { get; set; }
-        public TimeSpan ArrivalTime { get; set; }
+        public Schedule() { }
     }
 }

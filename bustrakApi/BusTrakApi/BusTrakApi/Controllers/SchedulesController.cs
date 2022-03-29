@@ -20,42 +20,42 @@ namespace BusTrakApi.Controllers
         }
 
         [HttpGet]
-        public List<ScheduleResponse> RetreiveSchedule(int busStopId, DateTime time)
+        public List<Schedule> RetreiveSchedule(int busStopId, DateTime time)
         {
             var timeInMinutes = TimeSpan.Parse(time.ToString("HH:mm")).TotalMinutes;
             var response = schedules.schedules
                 .Where(xx => xx.BusStopId == busStopId
                     && xx.TimeInMinutes > timeInMinutes
                     && xx.RouteId == 0)
-                .Select(xx => new ScheduleResponse()
+                .Select(xx => new Schedule()
                 {
                     BusStopId = xx.BusStopId,
                     RouteId = xx.RouteId,
-                    ArrivalTime = xx.ArrivalTime
+                    TimeInMinutes = (int)((double)xx.TimeInMinutes - timeInMinutes)
                 }).Take(2).ToList();
 
             response.AddRange(schedules.schedules
                 .Where(xx => xx.BusStopId == busStopId
                     && xx.TimeInMinutes > timeInMinutes
                     && xx.RouteId == 1)
-                .Select(xx => new ScheduleResponse()
+                .Select(xx => new Schedule()
                 {
                     BusStopId = xx.BusStopId,
                     RouteId = xx.RouteId,
-                    ArrivalTime = xx.ArrivalTime
+                    TimeInMinutes = (int)((double)xx.TimeInMinutes - timeInMinutes)
                 }).Take(2).ToList());
 
             response.AddRange(schedules.schedules
                 .Where(xx => xx.BusStopId == busStopId
                     && xx.TimeInMinutes > timeInMinutes
                     && xx.RouteId == 2)
-                .Select(xx => new ScheduleResponse()
+                .Select(xx => new Schedule()
                 {
                     BusStopId = xx.BusStopId,
                     RouteId = xx.RouteId,
-                    ArrivalTime = xx.ArrivalTime
+                    TimeInMinutes = (int) ((double)xx.TimeInMinutes - timeInMinutes)
                 }).Take(2).ToList());
-
+                       
             return response;
         }
     }
