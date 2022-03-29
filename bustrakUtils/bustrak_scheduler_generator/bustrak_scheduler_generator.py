@@ -31,7 +31,8 @@ class Scheduler:
     def generateSchedules(self):
         for busStopId in range(self.numBusStops):
             for routeId in range(self.numRoutes):
-                self.generateSchedule(busStopId, (busStopId)*self.timeBetweenStops, routeId, (routeId)*self.routeTimeOffset)
+                self.generateSchedule(busStopId, (busStopId)*self.timeBetweenStops, routeId, self.routeTimeOffset)
+                #self.generateSchedule(busStopId, (busStopId)*self.timeBetweenStops, routeId, (routeId)*self.routeTimeOffset)
 
     def dumpSchedules(self, fileName):
         with open(fileName, 'w') as f:
