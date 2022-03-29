@@ -6,7 +6,7 @@ This app is divided into 3 parts:
 * bustrakutils
 
 ## bustrakapi
-Api info
+.NET Core 5 based backend api.
 
 ## bustrak Web/UI
 An angular front end app 
